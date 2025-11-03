@@ -22,6 +22,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: #222;
+  display: flex;
 }
 
 .container {
@@ -189,7 +190,8 @@ nav a.active {
 
 .card img {
   width: 100%;
-  height: 180px;
+  height: auto;
+  max-height: 260px;
   object-fit: cover;
   border-radius: 8px;
 }
