@@ -1,5 +1,5 @@
 // === Настройка: замените на реальный номер в формате, например, 77271234567 (только цифры, код страны +7) ===
-const WHATSAPP_PHONE = "+77478349345";
+const WHATSAPP_PHONE = "77478349345";
 
 function openWhatsAppMessage(text) {
   if (!WHATSAPP_PHONE || WHATSAPP_PHONE === "PHONE_NUMBER") {
