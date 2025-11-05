@@ -3,10 +3,16 @@
   src: url(../fonts/PressStart2P-Regular.ttf);
 }
 :root {
+  --primary: #dcb593;
+  --primary-light: #e6c7ae;
+  --primary-dark: #b39f86;
   --accent: #d66b6b;
   --accent-dark: #b05252;
-  --muted: #707070;
+  --text-primary: #2c1810;
+  --text-secondary: #503a26;
+  --muted: #785a43;
   --bg: #fff7f6;
+  --bg-overlay: rgba(220, 181, 147, 0.15);
   --card: #ffffff;
   --radius: 14px;
   --max-width: 1100px;
@@ -20,8 +26,16 @@
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: #222;
+  background-color: var(--bg);
+  background-image: linear-gradient(
+      rgba(102, 66, 66, 0.704),
+      rgba(102, 66, 66, 0.704)
+    ),
+    url("https://png.pngtree.com/png-vector/20240321/ourmid/pngtree-repeating-pattern-with-pastry-desserts-seamless-pattern-png-image_12024416.png");
+  background-size: auto;
+  background-position: center;
+  background-repeat: repeat;
+  color: var(--text-primary);
   display: flex;
 }
 
@@ -36,6 +50,9 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
+  background-color: #dcb593;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .logo {
@@ -65,14 +82,30 @@ nav {
 }
 
 nav a {
-  padding: 8px 12px;
+  padding: 10px 16px;
   border-radius: 8px;
   text-decoration: none;
-  color: var(--muted);
+  color: #2c1810;
   font-weight: 600;
-  transition: 300ms;
+  transition: all 300ms ease;
+  position: relative;
   &:hover {
-    color: #222;
+    color: var(--accent-dark);
+    background-color: rgba(214, 107, 107, 0.1);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: all 300ms ease;
+    transform: translateX(-50%);
+  }
+  &:hover::after {
+    width: 80%;
   }
 }
 
@@ -81,18 +114,18 @@ nav a.active {
   color: var(--accent-dark);
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 20px;
-  margin-top: 22px;
-}
-
-.hero-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 22px;
-  box-shadow: 0 6px 24px rgba(17, 17, 17, 0.06);
+.card {
+  background-color: var(--primary);
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  box-shadow: 0 8px 28px var(--bg-overlay);
+  display: flex;
+  flex-direction: column;
+  transition: all 300ms ease-in-out;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
 }
 
 .hero h1 {
@@ -107,21 +140,36 @@ nav a.active {
 
 .cta {
   display: flex;
+
+  gap: 10px;
+}
+#bc {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
 .btn {
   background-color: var(--accent);
   color: white;
-  padding: 10px 14px;
+  padding: 12px 20px;
   border-radius: 10px;
-  border: solid 2px #333;
+  border: solid 2px var(--text-primary);
   text-decoration: none;
   font-weight: 700;
   cursor: pointer;
-  transition: 400ms;
+  transition: all 300ms ease-in-out;
+  position: relative;
+  overflow: hidden;
   &:hover {
-    background: #b05a5a;
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 181, 147, 0.3);
+    border-color: var(--accent-dark);
+  }
+  &:active {
+    transform: translateY(1px);
   }
 }
 #whBtn {
@@ -132,19 +180,31 @@ nav a.active {
   background: transparent;
   color: var(--accent-dark);
   border: 2px solid rgba(214, 107, 107, 0.12);
+  background-color: #fff;
 }
 
 .search {
   margin-top: 12px;
   display: flex;
-  gap: 8px;
+  border-radius: 10px;
 }
 
 .search input {
+  margin-right: 10px;
   flex: 1;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-color: rgba(220, 181, 147, 0.7);
+  color: #2c1810;
+  font-size: 16px;
+  transition: all 300ms ease;
+  &:focus {
+    outline: none;
+    border-color: var(--accent);
+    background-color: rgba(220, 181, 147, 0.9);
+    box-shadow: 0 0 0 3px rgba(214, 107, 107, 0.2);
+  }
 }
 
 .search button {
@@ -162,11 +222,12 @@ nav a.active {
 }
 
 .cat {
-  background: var(--card);
+  background-color: #dcb593;
   padding: 12px 16px;
   border-radius: 10px;
   box-shadow: 0 6px 18px rgba(17, 17, 17, 0.04);
   cursor: pointer;
+  color: #2c1810;
 }
 
 .cat.active {
@@ -179,13 +240,11 @@ nav a.active {
   gap: 18px;
 }
 
-.card {
-  background: var(--card);
-  padding: 14px;
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(17, 17, 17, 0.04);
-  display: flex;
-  flex-direction: column;
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 48px rgba(220, 181, 147, 0.2);
+  border-color: var(--accent);
+  background-color: var(--primary-light);
 }
 
 .card img {
@@ -193,7 +252,14 @@ nav a.active {
   height: auto;
   max-height: 260px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 6px 18px rgba(17, 17, 17, 0.06);
+  transition: transform 220ms ease;
+}
+
+.card img:hover {
+  transform: scale(1.02);
 }
 
 .card .title {
@@ -202,10 +268,11 @@ nav a.active {
 }
 
 .card .desc {
-  color: var(--muted);
+  color: var(--text-primary);
   font-size: 14px;
   margin: 8px 0;
   flex: 1;
+  line-height: 1.5;
 }
 
 .card .meta {
@@ -235,10 +302,11 @@ footer {
   margin: 40px 0;
   padding: 18px;
   border-radius: 10px;
-  background: linear-gradient(180deg, #fff, #fff0f0);
+  background-color: #dcb593;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #2c1810;
 }
 footer > .muted {
   display: flex;
@@ -249,6 +317,8 @@ footer > .muted {
 .muted {
   color: var(--muted);
   font-size: 13px;
+  padding-left: 10px;
+  border-radius: 10px;
 }
 
 .titlee {
@@ -258,7 +328,7 @@ footer > .muted {
 .title2 {
   font-weight: 500;
   margin-top: 10px;
-  color: #707070;
+  color: #2c1810;
 }
 #searchBtn {
   transition: 400ms;
@@ -266,6 +336,10 @@ footer > .muted {
   &:hover {
     background: #b05a5a;
   }
+}
+#searchInput {
+  background-color: #dcb593;
+  border-radius: 10px;
 }
 #box {
   height: 100vh;
@@ -292,4 +366,80 @@ footer > .muted {
 }
 #contacts b {
   color: #111;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #dcb593;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-12 {
+  gap: 12px;
+}
+
+.mt-18 {
+  margin-top: 18px;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fw-800 {
+  font-weight: 800;
+}
+
+.icon-box {
+  width: 64px;
+  height: 64px;
+  font-size: 170%;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick-order-card {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #dcb593;
+  border-radius: 8px;
+  color: #2c1810;
+}
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.hero-card {
+  gap: 18px;
 }
