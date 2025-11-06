@@ -207,6 +207,7 @@ nav a.active {
     background-color: rgba(220, 181, 147, 0.9);
     box-shadow: 0 0 0 3px rgba(214, 107, 107, 0.2);
   }
+  border: solid 1px #111;
 }
 
 .search button {
