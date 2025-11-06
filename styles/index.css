@@ -43,6 +43,8 @@ body {
   max-width: var(--max-width);
   margin: 28px auto;
   padding: 0 18px;
+  background-color: #dcb593;
+  border-radius: 10px;
 }
 
 header {
@@ -228,10 +230,17 @@ nav a.active {
   box-shadow: 0 6px 18px rgba(17, 17, 17, 0.04);
   cursor: pointer;
   color: #2c1810;
+  border: solid 1px #111;
+  transition: 0.3s ease;
+  &:hover{
+    background-color: #937962;
+    transition: 0.3s ease;
+  }
 }
 
 .cat.active {
   border: 2px solid var(--accent);
+  transition: 0.3s ease;
 }
 
 .grid {
@@ -442,4 +451,9 @@ footer > .muted {
 }
 .hero-card {
   gap: 18px;
+}
+#products{
+  border-bottom: solid 2.4px #785a43;
+  border-top: solid 2.4px #785a43;
+
 }
